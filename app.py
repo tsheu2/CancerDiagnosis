@@ -56,8 +56,9 @@ def predict(patient_data):
 
 # Fake Patients w/ tumor marker data
 patients = [
-    {'name': 'Alice'},
-    {'name': 'Bob'},
-    {'name': 'Charlie'},
+    {'name': 'Alice', 'PSA': 0.0, 'CA-125': 0.0, 'AFP': 0.0}, # Patient with Ovarian Cancer
+    {'name': 'Bob', 'PSA': 0.0, 'CA-125': 0.0, 'AFP': 0.0}, # Patient with Prostate Cancer
+    {'name': 'Charlie', 'PSA': 0.0, 'CA-125': 0.0, 'AFP': 0.0}, # 
+    {'name': 'Control', 'PSA': 0.0, 'CA-125': 0.0, 'AFP': 0.0} # Control patient with normal levels (no cancer)
 ]
 
