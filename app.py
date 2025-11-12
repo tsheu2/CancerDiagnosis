@@ -16,6 +16,7 @@ def logpdf(x: float, mean: float, var: float) -> float:
     '''
     return -0.5 * (math.log(2.0 * math.pi * var) + ((x - mean) ** 2) / var) # formula for log Gaussian PDF
 
+
 # ---- Cancer class means and variances ----
 # Format: "Class": (Signal Marker, (Mean, Variance))
 CLASS_MARKERS = {
@@ -36,7 +37,9 @@ CLASS_MARKERS = {
     "Pancreatic_Stage_IV":     ("CA19-9", (12_500.0, 35_000_000.0)),
 }
 
+
 ALL_MARKERS = ["HE4", "AFP", "CA19-9"] # used for looping
+
 
 # ---- Healthy values ----
 # Format: "Marker": (Mean, Variance)
@@ -47,9 +50,11 @@ HEALTHY = {
     "CA19-9": (20.0, 10.0**2),  
 }
 
+
 # Assumes uniform prior (equal probability) over all classes
 # Log P(Class) = -log(number of classes)
 LOG_PRIOR = -math.log(len(CLASS_MARKERS))
+
 
 # Used to compute log-sum-exp for normalization
 def _logsumexp(vals):
@@ -58,6 +63,7 @@ def _logsumexp(vals):
     # denominator log P(x) in Bayes formula
     m = max(vals) 
     return m + math.log(sum(math.exp(v - m) for v in vals)) 
+
 
 def rank_classes(patient):
     '''
@@ -95,10 +101,12 @@ def rank_classes(patient):
     ranked = sorted(((c, math.exp(s - lse)) for c, s in scores.items()), key=lambda kv: kv[1], reverse=True)
     return ranked
 
+
 # ---- Prediction function ----
 def predict_class(patient):
     ranked = rank_classes(patient)
     return ranked[0][0], ranked
+
 
 # ---- Example patients ----
 patients = [
