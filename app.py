@@ -14,7 +14,7 @@ def logpdf(x: float, mean: float, var: float) -> float:
     Returns the log of P(tumor marker level (x) | cancer).
     log P(x | mean,var) = -0.5 * [ log(2πvar) + (x - mean)² / var ]
     '''
-    return -0.5 * (math.log(2.0 * math.pi * var) + ((x - mean) ** 2) / var)
+    return -0.5 * (math.log(2.0 * math.pi * var) + ((x - mean) ** 2) / var) # formula for log Gaussian PDF
 
 # ---- Cancer class means and variances ----
 # Format: "Class": (Signal Marker, (Mean, Variance))
@@ -47,7 +47,7 @@ HEALTHY = {
     "CA19-9": (20.0, 10.0**2),  
 }
 
-# Assumes uniform prior
+# Assumes uniform prior (equal probability) over all classes
 # Log P(Class) = -log(number of classes)
 LOG_PRIOR = -math.log(len(CLASS_MARKERS))
 
@@ -109,6 +109,12 @@ patients = [
     {'name':'Fiona','HE4':60.0,'AFP':5.0,'CA19-9':12500.0},    # Pancreatic_Stage_IV
     {'name':'Grace','HE4':70.0,'AFP':6000.0,'CA19-9':24.0},    # Liver_Stage_IV
 ]
+
+
+
+
+
+
 
 # ---- Run classification ----
 print("="*60)
